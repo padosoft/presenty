@@ -207,18 +207,16 @@ class Presenty
     }
 
     /**
-     * Format anchor
+     * Format html anchor
      *
-     * @param string $url
      * @param array $arrAnchorAttributes
      * @return Presenty
      */
-    public function anchor(string $url, array $arrAnchorAttributes = []) : self
+    public function anchor(array $arrAnchorAttributes = []) : self
 	{
-        if(isNullOrEmpty($url)) {
-            $this->str = '';
+        if(isNullOrEmpty($this->str)) {
             return $this;
-		}
+        }
 
         $attrib='';
 		foreach($arrAnchorAttributes as $key => $val){
@@ -226,7 +224,7 @@ class Presenty
 		}
         $attrib.=' ';
 
-		$this->str = '<a '.$attrib.'href="'.$url.'">'.$this->str.'</a>';
+		$this->str = '<a '.$attrib.'href="'.$this->str.'">'.$this->str.'</a>';
 
         return $this;
     }
@@ -255,18 +253,23 @@ class Presenty
     }
 
     /**
-     * @param $value
      * @param string $classPositiveNumber
      * @param string $classNegativeNumber
      * @return Presenty
      */
-    public function bkgPositiveOrNegative($value, string $classPositiveNumber = 'label label-success', string $classNegativeNumber = 'label label-danger') : self
+    public function bkgPositiveOrNegative(string $classPositiveNumber = 'label label-success', string $classNegativeNumber = 'label label-danger') : self
     {
+        if(isNullOrEmpty($this->str)) {
+            return $this;
+        }
+
         $class = $classNegativeNumber;
-        if($value >= 0 && isDouble($value, '', true)){
+        if($this->str >= 0 && isDouble($this->str, '', true)){
             $class = $classPositiveNumber;
         }
+
         $this->str = '<span class="'.$class.'">'. $this->str.'</span>';
+
         return $this;
     }
 
