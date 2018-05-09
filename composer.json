@@ -1,0 +1,42 @@
+{
+    "name": "padosoft/presenty",
+    "description": "Presentation and Formatting helper with nice fluent interface.",
+    "keywords": [
+        "padosoft",
+        "presenty",
+        "format",
+        "presenter",
+        "fluent interface"
+    ],
+    "homepage": "https://github.com/padosoft/presenty",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lorenzo Padovani",
+            "email": "helpdesk@padosoft.com",
+            "homepage": "https://www.padosoft.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=7.1.0",
+        "padosoft/support": "^2.0.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0",
+        "padosoft/test": "^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Padosoft\\Presenty\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Padosoft\\Presenty\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
