@@ -45,6 +45,7 @@ echo presenty(2)->number(2);//print '2.00'
 echo presenty(1000, '.' , ',')->number(2);//print '1.000,00'
 
 //anchor
+echo presenty('https://www.padosoft.com')->anchor();//print '<a href="https://www.padosoft.com">https://www.padosoft.com</a>'
 echo presenty('https://www.padosoft.com')->anchor(['target' => '_blank']);//print '<a href="https://www.padosoft.com" target="_blank">https://www.padosoft.com</a>'
 
 ```

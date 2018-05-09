@@ -97,7 +97,7 @@ class Presenty
      * Format money
      *
      * @param int $decimal
-     * @param string $currency
+     * @param $currency
      * @return Presenty
      */
     public function money(int $decimal = 2, $currency = '&euro;') : self
@@ -121,8 +121,8 @@ class Presenty
      * Format number
      *
      * @param int $decimal
-     * @param string $dec_point
-     * @param string $thousands_sep
+     * @param $dec_point
+     * @param $thousands_sep
      * @return Presenty
      */
     public function number(int $decimal = 0, $dec_point=',', $thousands_sep='.') : self
