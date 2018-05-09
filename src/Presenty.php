@@ -38,6 +38,21 @@ class Presenty
      */
     public function __construct($str = '', $encoding = null)
     {
+        $this->validateArgument($str);
+
+        $this->str = (string) $str;
+
+        $this->encoding = $encoding ?: \mb_internal_encoding();
+    }
+
+    /**
+     * @param $str
+     *
+     * @throws \InvalidArgumentException if an array or object without a
+     *         __toString method is passed as the first argument
+     */
+    public function validateArgument($str): void
+    {
         if (\is_array($str)) {
             throw new InvalidArgumentException(
                 'Passed value cannot be an array'
@@ -49,10 +64,6 @@ class Presenty
                 'Passed object must have a __toString method'
             );
         }
-
-        $this->str = (string) $str;
-
-        $this->encoding = $encoding ?: \mb_internal_encoding();
     }
 
     /**
@@ -141,19 +152,28 @@ class Presenty
         if(isNullOrEmpty($this->str)) {
             return $this;
         }
+
 		if ($this->str == 1){
             $this->str = $keyYes;
             return $this;
         }
 
-        $tmp = strtolower($this->str);
-        if($tmp === 'yes' || $tmp  === 'si' || $tmp  === 'y' || $tmp === 's') {
+        if($this->isBooleanYes()){
             $this->str = $keyYes;
             return $this;
         }
 
 		$this->str = $keyNo;
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBooleanYes(): bool
+    {
+        $tmp = strtolower($this->str);
+        return ($tmp === 'yes' || $tmp === 'si' || $tmp === 'y' || $tmp === 's');
     }
 
     /**
@@ -199,17 +219,14 @@ class Presenty
             $this->str = '';
             return $this;
 		}
-		if(!\is_array($arrAnchorAttributes)){
-			$arrAnchorAttributes = [];
-		}
-		if(!array_key_exists('target', $arrAnchorAttributes)){
-			$arrAnchorAttributes['target'] = '_blank';
-		}
-		$attrib='';
+
+        $attrib='';
 		foreach($arrAnchorAttributes as $key => $val){
 			$attrib.=attre($key).'="'.attre($val).'" ';
 		}
-		$this->str = '<a '.$attrib.' href="'.$url.'">'.$this->str.'</a>';
+        $attrib.=' ';
+
+		$this->str = '<a '.$attrib.'href="'.$url.'">'.$this->str.'</a>';
 
         return $this;
     }
@@ -265,4 +282,3 @@ class Presenty
         return $this;
     }
 }
-
