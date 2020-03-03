@@ -100,19 +100,19 @@ class Presenty
      * @param $currency
      * @return Presenty
      */
-    public function money(int $decimal = 2, $currency = '&euro;') : self
-	{
-	    if(isNullOrEmpty($this->str)) {
+    public function money(int $decimal = 2, $currency = '&euro;'): self
+    {
+        if (isNullOrEmpty($this->str)) {
             $this->str = 0;
         }
 
-		$this->number($decimal);
+        $this->number($decimal);
 
-		if(!$this->str) {
-			return $this;
+        if (!$this->str) {
+            return $this;
         }
 
-        $this->str = $currency.' '.$this->str;
+        $this->str = $currency . ' ' . $this->str;
 
         return $this;
     }
@@ -125,14 +125,14 @@ class Presenty
      * @param $thousands_sep
      * @return Presenty
      */
-    public function number(int $decimal = 0, $dec_point=',', $thousands_sep='.') : self
-	{
-        if(isNullOrEmpty($this->str)) {
+    public function number(int $decimal = 0, $dec_point = ',', $thousands_sep = '.'): self
+    {
+        if (isNullOrEmpty($this->str)) {
             $this->str = 0;
         }
 
-		if($decimal < 0) {
-			$decimal = 0;
+        if ($decimal < 0) {
+            $decimal = 0;
         }
 
         $this->str = number_format($this->str, $decimal, $dec_point, $thousands_sep);
@@ -147,23 +147,23 @@ class Presenty
      * @param string $keyNo trans for no
      * @return Presenty
      */
-    public function boolean($keyYes = 'si', $keyNo = 'no') : self
-	{
-        if(isNullOrEmpty($this->str)) {
+    public function boolean($keyYes = 'si', $keyNo = 'no'): self
+    {
+        if (isNullOrEmpty($this->str)) {
             return $this;
         }
 
-		if ($this->str == 1){
+        if ($this->str == 1) {
             $this->str = $keyYes;
             return $this;
         }
 
-        if($this->isBooleanYes()){
+        if ($this->isBooleanYes()) {
             $this->str = $keyYes;
             return $this;
         }
 
-		$this->str = $keyNo;
+        $this->str = $keyNo;
         return $this;
     }
 
@@ -182,13 +182,13 @@ class Presenty
      * @param integer $len
      * @return Presenty
      */
-    public function url(int $len = 50) : self
+    public function url(int $len = 50): self
     {
-        if(isNullOrEmpty($this->str)) {
-			return $this;
-		}
-		$this->str = str_limit($this->str, $len);
-		return $this;
+        if (isNullOrEmpty($this->str)) {
+            return $this;
+        }
+        $this->str = str_limit($this->str, $len);
+        return $this;
     }
 
     /**
@@ -197,13 +197,13 @@ class Presenty
      * @param integer $len
      * @return Presenty
      */
-    public function description(int $len = 50) : self
-	{
-        if(isNullOrEmpty($this->str)) {
-			return $this;
-		}
-		$this->str = str_limit($this->str, $len);
-		return $this;
+    public function description(int $len = 50): self
+    {
+        if (isNullOrEmpty($this->str)) {
+            return $this;
+        }
+        $this->str = str_limit($this->str, $len);
+        return $this;
     }
 
     /**
@@ -212,19 +212,19 @@ class Presenty
      * @param array $arrAnchorAttributes
      * @return Presenty
      */
-    public function anchor(array $arrAnchorAttributes = []) : self
-	{
-        if(isNullOrEmpty($this->str)) {
+    public function anchor(array $arrAnchorAttributes = []): self
+    {
+        if (isNullOrEmpty($this->str)) {
             return $this;
         }
 
-        $attrib='';
-		foreach($arrAnchorAttributes as $key => $val){
-			$attrib.=attre($key).'="'.attre($val).'" ';
-		}
-        $attrib.=' ';
+        $attrib = '';
+        foreach ($arrAnchorAttributes as $key => $val) {
+            $attrib .= attre($key) . '="' . attre($val) . '" ';
+        }
+        $attrib .= ' ';
 
-		$this->str = '<a '.$attrib.'href="'.$this->str.'">'.$this->str.'</a>';
+        $this->str = '<a ' . $attrib . 'href="' . $this->str . '">' . $this->str . '</a>';
 
         return $this;
     }
@@ -235,19 +235,19 @@ class Presenty
      * @param string $label
      * @return Presenty
      */
-    public function mailto(?array $arrAnchorAttributes = [], string $label = '') : self
-	{
-		if(!\is_array($arrAnchorAttributes)){
-			$arrAnchorAttributes = [];
-		}
-		$attrib='';
-		foreach($arrAnchorAttributes as $key => $value){
-			$attrib.=attre($key).'="'.attre($value).'" ';
+    public function mailto(?array $arrAnchorAttributes = [], string $label = ''): self
+    {
+        if (!\is_array($arrAnchorAttributes)) {
+            $arrAnchorAttributes = [];
         }
-        if(isNullOrEmpty($label)) {
+        $attrib = '';
+        foreach ($arrAnchorAttributes as $key => $value) {
+            $attrib .= attre($key) . '="' . attre($value) . '" ';
+        }
+        if (isNullOrEmpty($label)) {
             $label = $this->str;
         }
-		$this->str = '<a '.$attrib.' href="mailto:'.attre($this->str).'">'.$label.'</a>';
+        $this->str = '<a ' . $attrib . ' href="mailto:' . attre($this->str) . '">' . $label . '</a>';
 
         return $this;
     }
@@ -257,18 +257,18 @@ class Presenty
      * @param string $classNegativeNumber
      * @return Presenty
      */
-    public function bkgPositiveOrNegative(string $classPositiveNumber = 'label label-success', string $classNegativeNumber = 'label label-danger') : self
+    public function bkgPositiveOrNegative(string $classPositiveNumber = 'label label-success', string $classNegativeNumber = 'label label-danger'): self
     {
-        if(isNullOrEmpty($this->str)) {
+        if (isNullOrEmpty($this->str)) {
             return $this;
         }
 
         $class = $classNegativeNumber;
-        if($this->str >= 0 && isDouble($this->str, '', true)){
+        if ($this->str >= 0 && isDouble($this->str, '', true)) {
             $class = $classPositiveNumber;
         }
 
-        $this->str = '<span class="'.$class.'">'. $this->str.'</span>';
+        $this->str = '<span class="' . $class . '">' . $this->str . '</span>';
 
         return $this;
     }
@@ -278,10 +278,44 @@ class Presenty
      *
      * @return Presenty
      */
-    public function dateIta() : self
-	{
+    public function dateIta(): self
+    {
         $tmp = new \DateTime($this->str);
         $this->str = $tmp->format('d/m/Y');
+        return $this;
+    }
+
+    /**
+     * Formats an array of strings or numbers to a single chained string.
+     * Automatically trims spaces from letters.
+     * If $excludeZeroNumber is set to TRUE it recognizes 0 as a falsy value and it will be ignored.
+     * @param array $array
+     * @param string $implodeString
+     * @param boolean $excludeZeroNumber
+     * @return Presenty
+     */
+    public function implode(
+        array $array,
+        $implodeString = " ",
+        $excludeZeroNumber = true
+    ) {
+        $trimmedArray = array_map('trim', $array);
+        $cleanedArray = [];
+
+        if ($excludeZeroNumber) {
+            $cleanedArray = array_values(array_filter($trimmedArray));
+        } else {
+            $cleanedArray = array_values(
+                array_filter(
+                    $trimmedArray,
+                    function ($item) {
+                        return ($item || is_numeric($item));
+                    })
+            );
+        }
+
+        $this->str = implode($implodeString, $cleanedArray);
+
         return $this;
     }
 }
