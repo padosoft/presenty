@@ -2,13 +2,15 @@
 
 namespace Padosoft\Presenty\Test;
 
-class PresentyTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PresentyTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp():void
     {
     }
 
-    protected function tearDown()
+    protected function tearDown():void
     {
     }
 
