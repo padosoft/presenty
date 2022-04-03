@@ -6,11 +6,11 @@ use PHPUnit\Framework\TestCase;
 
 class PresentyTest extends TestCase
 {
-    protected function setUp(): void
+    protected function setUp():void
     {
     }
 
-    protected function tearDown(): void
+    protected function tearDown():void
     {
     }
 
@@ -25,8 +25,8 @@ class PresentyTest extends TestCase
         }
 
         return strpos($expected, 'Exception') !== false
-            || strpos($expected, 'PHPUnit_Framework_') !== false
-            || strpos($expected, 'TypeError') !== false;
+        || strpos($expected, 'PHPUnit_Framework_') !== false
+        || strpos($expected, 'TypeError') !== false;
     }
 
     /**
