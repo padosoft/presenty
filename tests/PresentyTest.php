@@ -2,13 +2,15 @@
 
 namespace Padosoft\Presenty\Test;
 
-class PresentyTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PresentyTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -23,8 +25,8 @@ class PresentyTest extends \PHPUnit_Framework_TestCase
         }
 
         return strpos($expected, 'Exception') !== false
-        || strpos($expected, 'PHPUnit_Framework_') !== false
-        || strpos($expected, 'TypeError') !== false;
+            || strpos($expected, 'PHPUnit_Framework_') !== false
+            || strpos($expected, 'TypeError') !== false;
     }
 
     /**
