@@ -26,7 +26,7 @@ Table of Contents
 ##Requires
   
 - "php" : ">=7.1.0",
-- padosoft/support": "^2.0.2"
+- padosoft/support": "^3.0.4"
   
 ## Installation
 
