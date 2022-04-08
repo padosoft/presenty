@@ -220,7 +220,7 @@ class Presenty
 
         $attrib='';
 		foreach($arrAnchorAttributes as $key => $val){
-			$attrib.=attre($key).'="'.attre($val).'" ';
+			$attrib.=attreEx($key).'="'.attreEx($val).'" ';
 		}
         $attrib.=' ';
 
@@ -242,12 +242,12 @@ class Presenty
 		}
 		$attrib='';
 		foreach($arrAnchorAttributes as $key => $value){
-			$attrib.=attre($key).'="'.attre($value).'" ';
+			$attrib.=attreEx($key).'="'.attreEx($value).'" ';
         }
         if(isNullOrEmpty($label)) {
             $label = $this->str;
         }
-		$this->str = '<a '.$attrib.' href="mailto:'.attre($this->str).'">'.$label.'</a>';
+		$this->str = '<a '.$attrib.' href="mailto:'.attreEx($this->str).'">'.$label.'</a>';
 
         return $this;
     }
